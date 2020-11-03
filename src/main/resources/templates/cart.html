@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="/common/header.html :: head">
+</head>
+
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: header">
+</header>
+
+
+<div>
+    <div class="site-section" id="trainer-section">
+        <div class="container" data-aos="fade-up">
+            <div class="row large-gutters">
+                <div th:if="${!(cartList.get(2).getUser().getId().toString() == null)}">
+                    <div th:if="${cartList.get(2).getUser().getId().toString().equals(loginId)}">
+                        <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}">
+
+                            <p th:text="${cart.boardId}"></p>
+                            <a th:href="@{'/post/' + ${cart.boardId}}">1
+                                <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
+                                     th:href="@{'/post/' + ${cart.boardId}}">
+                                <p class="mb-4 opacity-7">
+                                    <span th:text="${cart.title}"></span>
+                                </p>
+                                <p><span th:text="${cart.writer}"></span></p>
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-section" th:replace="/common/footer.html :: footer">
+</footer>
+
+<!-- 변수 셋팅 -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cartDto = /*[[${cartDto}]]*/ "";
+    /*]]>*/
+</script>
+
+<!-- script -->
+<script th:inline="javascript" th:src="@{/js/cart.js}"></script>
+
+<!--&lt;!&ndash; .site-wrap &ndash;&gt;-->
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+
+<script src="js/main.js"></script>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/common/header.html :: head">
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: header">
+</header>
+
+
+<div class="intro-section " id="home-section" >
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-13 mx-auto text-center" data-aos="fade-up">
+                <h2>
+                    저희 컨택트 헬스 매니저는 <br> 다양한 매니저들을 소개해드립니다.
+                </h2>
+                <p class="mx-auto text-center" th:if="${role.toString().equals('ROLE_TRAINER')}">
+                    <a th:href="@{/post}" class="nav-link btn btn-outline-light">지금 바로 매니저 등록 하기 </a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<h1>인기 게시글</h1>
+<div class="site-section" id="trainer-section">
+    <div class="owl-carousel nonloop-block-13">
+
+
+
+
+        <div th:each="board : ${boardList}">
+
+
+
+<!--            <a th:href="@{'/post/' + ${board.id}}" class="work-thumb">-->
+<!--                <div class="work-text">-->
+<!--                <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid">-->
+
+<!--                &lt;!&ndash;                             th:href="@{'/post/' + ${board.id}}">&ndash;&gt;-->
+<!--                <p class="mb-4 opacity-7">-->
+<!--                    <span th:text="${board.title}"></span>-->
+<!--                </p>-->
+<!--                <h3><span th:text="${board.writer}"></span></h3>-->
+<!--                </div>-->
+<!--            </a>-->
+
+
+
+
+            <a class="work-thumb" th:href="@{'/post/' + ${board.id}}">
+                <div class="work-text">
+                    <h3><span th:text="${board.title}"></span></h3>
+                    <p style="color: black">조회수 : <span th:text="${board.bcount}" style="color: #1b1e21"></span></p>
+                    <span class="category">Fitness</span>
+                </div>
+                <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" style=" "  class="img-fluid">
+                <h3><span th:text="${board.writer}"></span></h3>
+            </a>
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<footer class="footer-section" th:replace="/common/footer.html :: footer">
+</footer>
+
+
+</div>
+<!-- .site-wrap -->
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+
+<script src="js/main.js"></script>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

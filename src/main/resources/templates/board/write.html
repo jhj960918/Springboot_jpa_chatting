@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
+
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>Example</title>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link
+            href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+            rel="stylesheet">
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script
+            src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <!-- include summernote css/js-->
+    <link
+            href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+            rel="stylesheet">
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+</head>
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: head">
+</header>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: header">
+</header>
+
+<div class="site-section section-2" id="classes-section">
+    <h2 class="section-title mb-3">매니저등록</h2>
+    <div class="site-section" id="contact-section">
+
+        <form th:action="@{/post}" method="POST"enctype="multipart/form-data">
+
+            <div class="halfmain">
+
+                <div class="halfleft">
+                    <label class="col-form-label text-md-right
+                            col-12 col-md-3 col-lg-3">사진 업로드</label>
+                    <div class="col-sm-12 col-md-7" >
+                        <input type="file" name="img" class=""  value="사진업로드">
+                    </div>
+                </div>
+
+                <div class="halfright">
+                    <div class="form-group row">
+                        <div class="col-md-6 mb-3 mb-lg-0">
+                            <input type="text" name="title"
+                                   class="form-control"
+                                   placeholder="제목"
+                                   autocomplete="off" required/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" name="companyphone"
+                                   class="form-control"
+                                   placeholder="소속 전화번호"
+                                   autocomplete="off" required/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" name="companyname"
+                                   class="form-control"
+                                   placeholder="소속 이름"
+                                   autocomplete="off" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="address"
+                                   class="form-control"
+                                   placeholder="소속 주소"
+                                   autocomplete="off" required/>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+
+<textarea class="form-control" id="content" name="content"
+          placeholder="content" maxlength="140" rows="7"></textarea>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-primary py-3 px-5 btn-block " value="등록">
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#content').summernote({
+            height: 300,
+            minHeight: null,
+            maxHeight: null,
+            focus: true,
+            callbacks: {
+                onImageUpload: function (files, editor, welEditable) {
+                    for (var i = 0; i < files.length; i++) {
+                        sendFile(files[i], this);
+                    }
+                }
+            }
+        });
+    });
+
+    function sendFile(file, el) {
+        var form_data = new FormData();
+        form_data.append('file', file);
+        $.ajax({
+            data: form_data,
+            type: "POST",
+            url: '/image',
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function (url) {
+                $(el).summernote('insertImage', url, function ($image) {
+                    $image.css('width', "50%");
+                });
+            }
+        });
+    }
+</script>
+</body>
+</html>

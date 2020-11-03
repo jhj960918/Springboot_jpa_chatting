@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="/common/header.html :: head">
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: header">
+</header>
+
+<div class="site-section section-2" id="classes-section">
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+
+                    <h2 class="section-title mb-3">1:1 건의</h2>
+                    <p class="mb-5">고객님들의 소리에 하나하나 귀 기울여 듣고 명쾌한 답변으로 보답하겠습니다.</p>
+
+                    <form th:action="@{/mail}" method="POST" data-aos="fade">
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3 mb-lg-0">
+                                <input type="text" name="title" class="form-control" placeholder="제목">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="address" class="form-control" placeholder="작성자 이메일 주소">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                    <textarea class="form-control" name="message" cols="60" rows="20"
+                                    placeholder="문제의 요점과 구성에 대해서 명확히 써주시면 감사하겠습니다."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="보내기">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-section" th:replace="/common/footer.html :: footer">
+</footer>
+
+</body>
+<!-- .site-wrap -->
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+
+<script src="js/main.js"></script>
+</html>
+
