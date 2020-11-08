@@ -57,15 +57,15 @@
             roomName: '',
             message: '',
             messages: [],
-            u_name: ''
+            token: ''
         },
         created() {
             this.roomId = localStorage.getItem('wschat.roomId');
             this.roomName = localStorage.getItem('wschat.roomName');
             var _this = this;
             axios.get('/chat/user').then(response => {
-                _this.u_name = response.data.u_name;
-                ws.connect({"u_name":_this.u_name}, function(frame) {
+                _this.token = response.data.token;
+                ws.connect({"token":_this.token}, function(frame) {
                     ws.subscribe("/sub/chat/room/"+_this.roomId, function(message) {
                         var recv = JSON.parse(message.body);
                         _this.recvMessage(recv);
@@ -79,7 +79,7 @@
         },
         methods: {
             sendMessage: function(type) {
-                ws.send("/pub/chat/message", {"u_name":this.u_name}, JSON.stringify({type:type, roomId:this.roomId, message:this.message}));
+                ws.send("/pub/chat/message", {"token":this.token}, JSON.stringify({type:type, roomId:this.roomId, message:this.message}));
                 this.message = '';
             },
             recvMessage: function(recv) {
