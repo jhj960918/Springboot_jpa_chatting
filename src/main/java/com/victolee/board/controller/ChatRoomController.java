@@ -22,7 +22,7 @@ public class ChatRoomController {
 
     @GetMapping("/room")
     public String rooms(Model model) {
-        return "/chat/room";
+        return "room.html";
     }
 
     @GetMapping("/rooms")
@@ -43,7 +43,7 @@ public class ChatRoomController {
     @GetMapping("/room/enter/{roomId}")
     public String roomDetail(Model model, @PathVariable String roomId) {
         model.addAttribute("roomId", roomId);
-        return "/chat/roomdetail";
+        return "roomdetail.html";
     }
 
     @GetMapping("/room/{roomId}")
